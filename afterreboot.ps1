@@ -5,4 +5,9 @@ Add-RDServer -Server "$env:computername.$env:userdnsdomain" -Role "RDS-WEB-ACCES
 Import-Module activedirectory
 get-adcomputer $env:computername | Move-ADObject -TargetPath 'OU=RTA,DC=rta-host,DC=com'
 Import-Module RemoteDesktopServices
-cd RDS:\
+cd RDS:\GatewayServer\CAP\Default-CAP\UserGroups
+New-Item -Name "domain users@RTA-HOST"
+cd RDS:\GatewayServer\RAP\Default-RAP\UserGroups
+New-Item -Name "domain users@RTA-HOST"
+cd RDS:\GatewayServer
+Set-Item -Path SSLBridging -Value 2
